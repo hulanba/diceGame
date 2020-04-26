@@ -19,6 +19,7 @@ body {
   margin-top: 90px;
   margin-left: 18vw;
   box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
 }
 .dice {
   position: absolute;
@@ -63,6 +64,20 @@ button:hover i {
 .hold {
   bottom: 100px;
 }
+.active {
+  background-color: #f7f7f7;
+}
+.active .name {
+  font-weight: 300;
+}
+.active .name::after {
+  content: "\2022";
+  font-size: 47px;
+  position: absolute;
+  color: #eb4d4d;
+  top: -7px;
+  right: 10px;
+}
 .wrap-1 {
   display: block;
   position: absolute;
@@ -71,7 +86,6 @@ button:hover i {
   width: 500px;
   height: 600px;
   padding: 100px;
-  background: rgb(247, 247, 247);
   z-index: -1;
 }
 
@@ -83,7 +97,6 @@ button:hover i {
   width: 500px;
   height: 600px;
   padding: 100px;
-  background: #ffffff;
   z-index: -1;
 }
 
