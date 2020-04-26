@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice Game || Two Player</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="main.css" />
+
+    <script
+      src="https://kit.fontawesome.com/5543b3b681.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <img src="./img/dice-5.png" alt="none" class="dice" />
+      <button class="btn start">
+        <i class="fas fa-plus-circle"></i> Шинээр эхлүүлэх
+      </button>
+      <button class="btn roll"><i class="fas fa-sync"></i>Шоо хаяах</button>
+      <button class="btn hold">
+        <i class="fas fa-arrow-circle-down"></i>Хадгалах
+      </button>
+      <div class="wrap-1">
+        <div class="name">Player 1</div>
+        <div class="roll-score" id="score-0">43</div>
+        <div class="wrapper">
+          <div class="sum">Оноо</div>
+          <div class="current-score sc-0">11</div>
+        </div>
+      </div>
+      <div class="wrap-2">
+        <div class="name">Player 2</div>
+        <div class="roll-score" id="score-1">77</div>
+        <div class="wrapper">
+          <div class="sum">Оноо</div>
+          <div class="current-score sc-1">11</div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
