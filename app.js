@@ -1,9 +1,11 @@
+var isNewGame;
 var activePlayer;
 var scores;
 var roundScore;
 var diceDom = document.querySelector(".dice");
 starGame();
 function starGame() {
+  isNewGame = true;
   // Тогогчийн ээлжийг хадгалах хувьсагч
   activePlayer = 0;
 
@@ -33,36 +35,43 @@ function starGame() {
 
 // click хийхэд ажиллах event listener
 document.querySelector(".roll").addEventListener("click", function () {
-  //1-6 хүртэл санамсаргүй тоо
-  var diceNumber = Math.floor(Math.random() * 6) + 1;
-  //шооны зургийг гаргаж ирэх
-  diceDom.style.display = "block";
-  //санамсаргүй утгат харгалзах зургийг гаргаж ирэх
-  diceDom.src = "./img/dice-" + diceNumber + ".png";
-  if (diceNumber !== 1) {
-    roundScore = roundScore + diceNumber;
-    document.getElementById("cs-" + activePlayer).textContent = roundScore;
+  if (isNewGame) {
+    //1-6 хүртэл санамсаргүй тоо
+    var diceNumber = Math.floor(Math.random() * 6) + 1;
+    //шооны зургийг гаргаж ирэх
+    diceDom.style.display = "block";
+    //санамсаргүй утгат харгалзах зургийг гаргаж ирэх
+    diceDom.src = "./img/dice-" + diceNumber + ".png";
+    if (diceNumber !== 1) {
+      roundScore = roundScore + diceNumber;
+      document.getElementById("cs-" + activePlayer).textContent = roundScore;
+    } else {
+      switchToNext();
+    }
   } else {
-    /*if (activePlayer === 0) {
-        activePlayer = 1;
-        } else {
-        activePlayer = 0;
-        }*/
-    switchToNext();
+    alert("Тоглоом дууссан байна ШИНЭЭР ЭХЛҮҮЛЭХ товчийг дарж эхлүүлнэ үү!");
   }
 });
 
 document.querySelector(".hold").addEventListener("click", function () {
-  scores[activePlayer] = scores[activePlayer] + roundScore;
-  document.getElementById("score-" + activePlayer).textContent =
-    scores[activePlayer];
-  if (scores[activePlayer] >= 10) {
-    document.getElementById("name-" + activePlayer).textContent = "Winner!!!";
+  if (isNewGame) {
+    scores[activePlayer] = scores[activePlayer] + roundScore;
+    document.getElementById("score-" + activePlayer).textContent =
+      scores[activePlayer];
+    if (scores[activePlayer] >= 10) {
+      //Тоглоом дууссан төлөвтэй болгоно
+      isNewGame = false;
+      document.getElementById("name-" + activePlayer).textContent = "Winner!!!";
 
-    document.querySelector(".wrap-" + activePlayer).classList.add("winner");
-    document.querySelector(".wrap-" + activePlayer).classList.remove("active");
+      document.querySelector(".wrap-" + activePlayer).classList.add("winner");
+      document
+        .querySelector(".wrap-" + activePlayer)
+        .classList.remove("active");
+    } else {
+      switchToNext();
+    }
   } else {
-    switchToNext();
+    alert("Тоглоом дууссан байна ШИНЭЭР ЭХЛҮҮЛЭХ товчийг дарж эхлүүлнэ үү!");
   }
 });
 
