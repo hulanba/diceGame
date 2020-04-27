@@ -6,7 +6,6 @@ var scores = [0, 0];
 //Ээлжийн оноог хадгалах хувьсагч
 var roundScore = 0;
 //Шооны аль талаараа буусаныг хадгалах хувьсагч 1-6 гэсэн утгыг санамсаргүйгээр үүсгэх
-var diceNumber = Math.floor(Math.random() * 6) + 1;
 
 document.getElementById("score-0").textContent = "0";
 document.getElementById("score-1").textContent = "0";
@@ -22,29 +21,45 @@ document.querySelector(".roll").addEventListener("click", function () {
   diceDom.style.display = "block";
   //санамсаргүй утгат харгалзах зургийг гаргаж ирэх
   diceDom.src = "./img/dice-" + diceNumber + ".png";
-
   if (diceNumber !== 1) {
     roundScore = roundScore + diceNumber;
     document.getElementById("cs-" + activePlayer).textContent = roundScore;
   } else {
-    //элээд ээлжйн оноог 0 болгох
-    document.getElementById("cs-" + activePlayer).textContent = 0;
-    roundScore = 0;
-    // дараа нь 1 буусан тохиолдолд ээлжийг солино
-    activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
-
-    //Active player-г өөрчлөх
-    document.querySelector(".wrap-1").classList.toggle("active");
-    document.querySelector(".wrap-2").classList.toggle("active");
-
-    //Шоог түр алга болгох
-
-    diceDom.style.display = "none";
-
     /*if (activePlayer === 0) {
-      activePlayer = 1;
-    } else {
-      activePlayer = 0;
-    }*/
+        activePlayer = 1;
+        } else {
+        activePlayer = 0;
+        }*/
+    switchToNext();
   }
 });
+
+document.querySelector(".hold").addEventListener("click", function () {
+  scores[activePlayer] = scores[activePlayer] + roundScore;
+  document.getElementById("score-" + activePlayer).textContent =
+    scores[activePlayer];
+  if (scores[activePlayer] >= 10) {
+    document.getElementById("name-" + activePlayer).textContent = "Winner!!!";
+
+    document.querySelector(".wrap-" + activePlayer).classList.add("winner");
+    document.querySelector(".wrap-" + activePlayer).classList.remove("active");
+  } else {
+    switchToNext();
+  }
+});
+
+function switchToNext() {
+  //элээд ээлжйн оноог 0 болгох
+  document.getElementById("cs-" + activePlayer).textContent = 0;
+  roundScore = 0;
+  // дараа нь 1 буусан тохиолдолд ээлжийг солино
+  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+
+  //Active player-г өөрчлөх
+  document.querySelector(".wrap-1").classList.toggle("active");
+  document.querySelector(".wrap-2").classList.toggle("active");
+
+  //Шоог түр алга болгох
+  diceDom.style.display = "none";
+}
+ocument.querySelector(".start").addEventListener("click", starGame);
