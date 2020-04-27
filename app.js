@@ -1,18 +1,36 @@
-// Тогогчийн ээлжийг хадгалах хувьсагч
-var activePlayer = 0;
-
-//Тоглогчдын цуглуулсан оноог хадгалах хувьсагч
-var scores = [0, 0];
-//Ээлжийн оноог хадгалах хувьсагч
-var roundScore = 0;
-//Шооны аль талаараа буусаныг хадгалах хувьсагч 1-6 гэсэн утгыг санамсаргүйгээр үүсгэх
-
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-document.getElementById("cs-0").textContent = "0";
-document.getElementById("cs-1").textContent = "0";
+var activePlayer;
+var scores;
+var roundScore;
 var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
+starGame();
+function starGame() {
+  // Тогогчийн ээлжийг хадгалах хувьсагч
+  activePlayer = 0;
+
+  //Тоглогчдын цуглуулсан оноог хадгалах хувьсагч
+  scores = [0, 0];
+  //Ээлжийн оноог хадгалах хувьсагч
+  roundScore = 0;
+  //Шооны аль талаараа буусаныг хадгалах хувьсагч 1-6 гэсэн утгыг санамсаргүйгээр үүсгэх
+
+  document.getElementById("score-0").textContent = "0";
+  document.getElementById("score-1").textContent = "0";
+  document.getElementById("cs-0").textContent = "0";
+  document.getElementById("cs-1").textContent = "0";
+  document.getElementById("name-0").textContent = "Player 1";
+  document.getElementById("name-1").textContent = "Player 2";
+
+  document.querySelector(".wrap-0").classList.remove("winner");
+  document.querySelector(".wrap-1").classList.remove("winner");
+
+  document.querySelector(".wrap-0").classList.remove("active");
+  document.querySelector(".wrap-1").classList.remove("active");
+
+  document.querySelector(".wrap-0").classList.add("active");
+
+  diceDom.style.display = "none";
+}
+
 // click хийхэд ажиллах event listener
 document.querySelector(".roll").addEventListener("click", function () {
   //1-6 хүртэл санамсаргүй тоо
@@ -56,10 +74,12 @@ function switchToNext() {
   activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
 
   //Active player-г өөрчлөх
+  document.querySelector(".wrap-0").classList.toggle("active");
   document.querySelector(".wrap-1").classList.toggle("active");
-  document.querySelector(".wrap-2").classList.toggle("active");
 
   //Шоог түр алга болгох
   diceDom.style.display = "none";
 }
-ocument.querySelector(".start").addEventListener("click", starGame);
+
+//шинээр тоглоом эхлүүлэх
+document.querySelector(".start").addEventListener("click", starGame);

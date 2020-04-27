@@ -4,7 +4,11 @@
   box-sizing: border-box;
 }
 body {
-  background-image: url(./img/back.jpg);
+  background-image: linear-gradient(
+      rgba(62, 20, 20, 0.4),
+      rgba(62, 20, 20, 0.4)
+    ),
+    url(./img/back.jpg);
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
   font-family: "Lato";
@@ -133,7 +137,7 @@ button:hover i {
 .winner {
   background-color: #f7f7f7;
 }
-.winner .player-name {
+.winner .name {
   font-weight: 300;
   color: #eb4d4d;
 }
