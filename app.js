@@ -58,7 +58,7 @@ document.querySelector(".hold").addEventListener("click", function () {
     scores[activePlayer] = scores[activePlayer] + roundScore;
     document.getElementById("score-" + activePlayer).textContent =
       scores[activePlayer];
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       //Тоглоом дууссан төлөвтэй болгоно
       isNewGame = false;
       document.getElementById("name-" + activePlayer).textContent = "Winner!!!";
